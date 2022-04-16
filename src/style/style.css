@@ -1,0 +1,72 @@
+:root {
+   --black : #2B283A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--black);
+}
+
+
+
+main {
+    background-color:  #0B2434;
+    width: 100%;
+    height: 100vh;    
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: #F5F5F5;
+    border-radius: 10px;
+    width:70vh;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.dice-container {    
+    display: grid;
+    grid-template: auto auto / repeat(5,1fr);
+    gap: 20px;   
+
+}
+
+.title {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.game-discription {
+    width: 335px;
+    font-weight: 400;
+    font-size: 18px;    
+    text-align: center;
+    margin-top: 25px;
+}
+
+.roll-btn {
+    border: none;
+    text-align: center;
+    color: #FFFFFF;
+    background: #5035FF;
+    box-shadow: 0px 3.2px 7.68px rgba(0, 0, 0, 0.18);
+    border-radius: 3.81277px;
+    width: 120px;
+    height: 50px;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+
+}
+
+.roll-btn:active {
+    box-shadow: inset 5px 5px 10px -3px rgba(0,0,0,0.7);
+}
