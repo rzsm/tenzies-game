@@ -1,12 +1,14 @@
 import React from "react";
 import Die from "./components/Die";
 import { nanoid } from "nanoid";
-import Confetti from 'react-confetti'
+import Confetti from "react-confetti";
 import "./style/style.css";
 
 function App() {
   const [dice, setDice] = React.useState(() => newDice());
   const [tenzies, setTenzies] = React.useState(false);
+  const [rolls, setRolls] = React.useState(1);
+  const [highScore, setHighScore] = React.useState(JSON.parse(localStorage.getItem("highScore")) || 0);
 
   React.useEffect(() => {
     const allHeld = dice.every((die) => die.isHeld);
@@ -14,9 +16,16 @@ function App() {
       const allSameValue = dice.every((die) => die.value === dice[0].value);
       if (allSameValue) {
         setTenzies(true);
+        setHighScore(prevScore => prevScore ? 
+          (rolls < prevScore ? rolls : prevScore)
+          : rolls)        
       }
     }
   }, [dice]);
+
+  React.useEffect(() => {
+    localStorage.setItem("highScore", JSON.stringify(highScore))
+  }, [highScore])
 
   function newDice() {
     const randomNumbers = [];
@@ -34,7 +43,9 @@ function App() {
     if (tenzies) {
       setTenzies(false);
       setDice(newDice());
+      setRolls(1);
     } else {
+      setRolls((prevRolls) => prevRolls + 1);
       setDice((prevDice) =>
         prevDice.map((die) =>
           die.isHeld
@@ -73,9 +84,8 @@ function App() {
   return (
     <main>
       {tenzies && <Confetti />}
-      
+
       <div className="container">
-      
         <div>
           <h1 className="title"> Tenzies </h1>
           <h4 className="game-discription">
@@ -84,8 +94,14 @@ function App() {
           </h4>
         </div>
 
+        <div className="record-badge">🏆 High Score : {highScore ? highScore : "__"}</div>
+        <div>
+          {" "}
+          🎲 you rolled for {rolls === 1 ? "1 time" : `${rolls} times`}{" "}
+        </div>
+
         <div className="dice-container">{diceElements}</div>
-        <button className="roll-btn" onClick={roll}>
+        <button className="btn roll-btn" onClick={roll}>
           {" "}
           {tenzies ? "New Game" : "Roll"}{" "}
         </button>

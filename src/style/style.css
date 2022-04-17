@@ -7,8 +7,12 @@
     padding: 0;
     box-sizing: border-box;
     color: var(--black);
+    font-family: 'Karla', sans-serif;
 }
 
+.btn:hover {
+    cursor: pointer;
+} 
 
 
 main {
@@ -25,8 +29,8 @@ main {
 .container {
     background: #F5F5F5;
     border-radius: 10px;
-    width:70vh;
-    height: 70vh;
+    width:90vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -46,9 +50,9 @@ main {
 }
 
 .game-discription {
-    width: 335px;
+    width: 405px;
     font-weight: 400;
-    font-size: 18px;    
+    font-size: 15px;    
     text-align: center;
     margin-top: 25px;
 }
@@ -60,13 +64,18 @@ main {
     background: #5035FF;
     box-shadow: 0px 3.2px 7.68px rgba(0, 0, 0, 0.18);
     border-radius: 3.81277px;
-    width: 120px;
+    width: 140px;
     height: 50px;
     font-size: 1.2rem;
     letter-spacing: 1px;
+    /* padding: 5px 10px; */
 
 }
 
 .roll-btn:active {
     box-shadow: inset 5px 5px 10px -3px rgba(0,0,0,0.7);
+}
+
+.record-badge {
+    font-weight: 600;
 }

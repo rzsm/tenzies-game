@@ -2,7 +2,7 @@ import './_die.css'
 
 export default function Die(props) {
     return (
-        <div className={`die ${props.isHeld && "is-held"}`} onClick={props.holdDie}>
+        <div className={`btn die ${props.isHeld && "is-held"}`} onClick={props.holdDie}>
             { props.value === 1 && 
                 <div className='die-dot middle center'></div>
             }
