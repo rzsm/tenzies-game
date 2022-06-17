@@ -1,5 +1,6 @@
 import React from "react";
-import Die from "./components/Die";
+import useLocalStorage from "./hooks/useLocalStorage";
+import Die from "./components/Die/Die";
 import { nanoid } from "nanoid";
 import Confetti from "react-confetti";
 import "./style/style.css";
@@ -8,24 +9,20 @@ function App() {
   const [dice, setDice] = React.useState(() => newDice());
   const [tenzies, setTenzies] = React.useState(false);
   const [rolls, setRolls] = React.useState(1);
-  const [highScore, setHighScore] = React.useState(JSON.parse(localStorage.getItem("highScore")) || 0);
+  const [highScore, setHighScore] = useLocalStorage('highScore', 0)  
 
   React.useEffect(() => {
     const allHeld = dice.every((die) => die.isHeld);
     if (allHeld) {
       const allSameValue = dice.every((die) => die.value === dice[0].value);
       if (allSameValue) {
-        setTenzies(true);
+        setTenzies(true);        
         setHighScore(prevScore => prevScore ? 
           (rolls < prevScore ? rolls : prevScore)
           : rolls)        
       }
     }
   }, [dice]);
-
-  React.useEffect(() => {
-    localStorage.setItem("highScore", JSON.stringify(highScore))
-  }, [highScore])
 
   function newDice() {
     const randomNumbers = [];
